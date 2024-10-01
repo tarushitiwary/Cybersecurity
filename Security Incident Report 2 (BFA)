@@ -1,0 +1,48 @@
+Section 1: Identify the network protocol involved in the incident.
+
+The protocol involved in the incident is HTTP (hypertext transfer protocol). Since the issue
+was with accessing the web server for yummyrecipesforme.com we know that requests to web servers
+for web pages involve http traffic. Also, when we ran tcpdump and accessed the yummyrecipesforme.com
+website the corresponding tcpdump log file showed the usage of http protocol at the application
+layer to transfer the malicious file to user. 
+
+Section 2: Document the incident 
+
+Several customers contacted the website's helpdesk stating that when they visited the website,
+they were promted to download and run a file that contained access to new recipes. Their personal
+computers have been operating slowly ever since. The website owner tried logging into the web 
+server but noticed they were locked out of their account. 
+
+The cybersecurity analyst used a sandbox environment to open the webiste without impacting the
+company network. Then the analyst ran tcpdump to capture the network traffic packets produced
+by interacting with the website. The analyst was prompted to download a file claiming it would
+provide access to free recipes, accepted the download and ran it. The browser then redirected
+the analyst to a fake website. 
+
+The cybersecurity analyst inspected the tcpdump log and oberserved that the browser intially
+requested the IP address for the yummyrecipesforme.com website. Once the connection with the 
+website was established over HTTP protocol, the analyst recalled downloading and executing 
+the file. The logs showed a sudden change in netowrk traffic as the browser requested a new
+Ip address for the fake website URL. The network traffic was then routed to the new IP address.
+
+The senior cybersecurity analyzed the source code for the websites and downloaded file.
+It was then discovered that an attacked had manipulated the website to add code that prompted
+users to download a malicious file disguised as a browser update. The website owner stated
+that they had been locked out of their administrator account, the team believes the attacker
+used a brute force attack to access the account and change the admin password. The execution
+of the malicious file compromised the end user's computers. 
+
+Section 3: Recommend one remediation for brute force attacks
+
+One security measure the team plans to implement to protect against brute force attacks is 
+to disallow previous passwords from being used. Since the vulnerability that led to this 
+attack was the attacker's ability to use a default password to log in, it's important that
+we prevent any old passwords such as default password from being used to reset the password.
+
+Another supportive measure is to require longer passwords. Passwords that are 15 characters
+or longer offer greater protection against brute force attacks.
+
+Another helpful solution is to implement two-factor authentication (2FA). This requires
+authentication via a password and also by confirming a one-time passcode (OTP) sent to 
+either their email or phone. Once the user confirms their identity through their login 
+credentials and the OTP, they will gain access to the system. 
